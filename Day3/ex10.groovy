@@ -12,23 +12,17 @@ String haystack = System.console().readLine()
 int needlep = 0
 int found = 0
 
-int i = 0
-
-while (i < haystack.length()) {
-	if (haystack.charAt(i) == needle.charAt(needlep)) {
-		needlep++
-		if (needlep == needle.length()) {
-			found++
-			needlep = 0
-		}
-		i++ 
-	} else {
-		if (needlep != 0 ) {
-			needlep = 0
-		} else {
-			i++
+for (int i = 0; i < haystack.length(); i++) {
+	int j
+	for (j = 0; j < needle.length() && (i + j) < haystack.length(); j++) {
+		if (haystack.charAt(i + j) != needle.charAt(j)) {
+			break;
 		}
 	}
+	if (j == needle.length()) {
+		// j == needle.length() because all characters in needle matched the characters in haystack
+		found++
+	}	
 }
 
 println "\"" + needle + "\" appears " + found + " times in \"" + haystack + "\""
