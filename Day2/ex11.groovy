@@ -66,8 +66,10 @@ while (i < 5) {
 			println suit + " is not a valid suit. Enter hearts, clubs, diamonds, or spades."
 			suitEntered = false
 		}
-		i++
 	}
+
+	i++
+
 }
 
 
@@ -124,17 +126,24 @@ int pairedCards = 0 // How many cards are members of a pair (i. e. if there is o
 
 for (i = 0; i < 5; i++) {
 	if (sameRanks[i] == 3) {
+	  // 3 cards have the same ranks as this one, 
+	  // i.e., four cards in the hand have this rank
 		poker = true	
 	} else if (sameRanks[i] == 2) {
-		threeOfAKind = true
+	  // 2 other cards have the same rank as this one, 
+	  // i.e., three cards in the hand have this rank
+		threeOfAKind = true 
 	} else if (sameRanks[i] == 1) {
+	  // 1 other card has the same rank as this one,
+	  // i.e., this card is part of a pair
 		pairedCards++
 	}
 }
 
 boolean fullHouse = threeOfAKind && pairedCards == 2
 boolean twoPairs = pairedCards == 4
-boolean pair = pairedCards == 2
+boolean pair = pairedCards == 2 // Exactly 2 cards are part of a pair, 
+                                // i.e. there is exactly one pair
 
 if (straight && flush) {
 	println "Straight flush"
