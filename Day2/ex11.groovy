@@ -1,3 +1,23 @@
+/*
+Read five cards from the user. For each card, read the rank (1,2,3,4,5,6,7,8,9, 
+10,J,Q,K) and the suit (”spades”, ”hearts”, ”diamonds”, ”clubs”). Each of the 
+five cards must be valid before accepting the next one. Once the program has the
+five cards, it should tell the user what is the best hand she has got, as per 
+the following list (from best to worst):
+
+Straigh flush: all cards are of the same suite and their ranks are consecutive. 
+  Note that they are probably not ordered as they were entered.
+Poker: four of the five cards have the same rank.
+Full House: three of a kind plus two of a kind.
+Flush: all cards share the same suit, but are not consecutive.
+Straight: all cards are consecutive, but not of the same suit.
+Three of a kind: three of the five cards have the same rank.
+Two pairs: two pairs (see below).
+Pair: two of the five cards have the same rank.
+Nothing: any other situation.
+
+*/
+
 enum Suit {
 	HEARTS,
 	CLUBS,
@@ -69,7 +89,6 @@ while (i < 5) {
 	}
 
 	i++
-
 }
 
 
@@ -83,73 +102,65 @@ for (i = 0; i < 4; i++) {
 	}
 }
 
+// Count how many cards have each of the 13 possible ranks
 
-// Check for straight (NB this currently does not detect a 10-J-Q-K-A straight, because A is stored as 1)
-
-int minDiff = 5
-int maxDiff = 0
-for (i = 0; i < 4; i++) {
-	for (j = i + 1; j < 5; j++) {
-		int diff = ranks[i] - ranks[j]
-		if (diff < 0) { 
-			diff = -diff 
-		}
-		if (diff < minDiff) {
-			minDiff = diff
-		}
-		if (diff > maxDiff) {
-			maxDiff = diff
-		}
-	}
-}
-
-boolean straight = minDiff == 1 && maxDiff == 4
-
-
-// Check for number of same suit (poker, three of a kind, pairs)
-
-int[] sameRanks = new int[5]
+int[] cardsWithRank = new int[13]
 
 for (i = 0; i < 5; i++) {
-	for (int j = 0; j < 5; j++) {
-		if (i == j)
-			continue
-		if (ranks[i] == ranks[j]) {
-			sameRanks[i]++;
-		}
-	}
+  // The first element of the array is 0, so the array element corresponding
+  // to rank 1 is 0, etc, and we need to subtract 1 here.
+  cardsWithRank[ranks[i] - 1]++
 }
 
-boolean poker = false 
+// Loop through all the ranks and check for the different hands
+
+boolean straight = false
+int run = 0
+
+boolean poker = false
 boolean threeOfAKind = false
-int pairedCards = 0 // How many cards are members of a pair (i. e. if there is one pair, pairedCards == 2)
+int pairs = 0
 
-for (i = 0; i < 5; i++) {
-	if (sameRanks[i] == 3) {
-	  // 3 cards have the same ranks as this one, 
-	  // i.e., four cards in the hand have this rank
-		poker = true	
-	} else if (sameRanks[i] == 2) {
-	  // 2 other cards have the same rank as this one, 
-	  // i.e., three cards in the hand have this rank
-		threeOfAKind = true 
-	} else if (sameRanks[i] == 1) {
-	  // 1 other card has the same rank as this one,
-	  // i.e., this card is part of a pair
-		pairedCards++
-	}
+for (i = 0; i < 13; i++) {
+  switch (cardsWithRank[i]) {
+    case 0:
+      run = 0
+      break
+    case 1:
+      run++
+      break
+    case 2:
+      pairs++
+      break
+    case 3:
+      threeOfAKind = true
+      break
+    case 4:
+      poker = true
+      break
+  }
+  
+  if (run == 5) {
+    straight = true
+    break
+  }
 }
 
-boolean fullHouse = threeOfAKind && pairedCards == 2
-boolean twoPairs = pairedCards == 4
-boolean pair = pairedCards == 2 // Exactly 2 cards are part of a pair, 
-                                // i.e. there is exactly one pair
+// Check for the special case of a 10-J-Q-K-A straight. According to Wikipedia, 
+// this is only allowed in some games, called "high rule" games.
+if (cardsWithRank[9] == 1 && 
+    cardsWithRank[10] == 1 && 
+    cardsWithRank[11] == 1 &&
+    cardsWithRank[12] == 1&&
+    cardsWithRank[0] == 1) {
+  straight = true
+}
 
 if (straight && flush) {
 	println "Straight flush"
 } else if (poker) {
 	println "Poker"
-} else if (fullHouse) {
+} else if (threeOfAKind && pairs == 1) {
 	println "Full house"
 } else if (flush) {
 	println "Flush"
@@ -157,9 +168,9 @@ if (straight && flush) {
 	println "Straight"
 } else if (threeOfAKind) {
 	println "Three of a kind"
-} else if (twoPairs) {
+} else if (pairs == 2) {
 	println "Two pairs"
-} else if (pair) {
+} else if (pairs == 1) {
 	println "Pair"
 } else {
 	println "Nothing"
