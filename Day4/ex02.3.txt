@@ -1,0 +1,41 @@
+﻿Follow the execution of the code as the user enters the following sequences of inputs:
+• 4, 0
+
+51-60, 67-68, 52-60, 61-62, 68, 52, 69
+
+• 1, john, 0
+
+51-60, 63, 6, 7, 1-3, 8, 40-44, 47, 42-44, 47, 42-44, 47, 42-44, 47-48, 12, 28-30, 13, 64, 52-60, 61-62, 68, 52, 69
+
+• 1, john smith, johnsmith, 0
+
+createUser
+	requestUser
+	isValidUser
+	requestUser
+	isValidUser
+	insertUserInDB
+
+• 2, userNotInDB, 0
+
+deleteUser
+	requestUser
+	isValidUser
+	requestUser
+	isValidUser
+	requestUser
+		// Stops here waiting for more user input
+	
+
+• 1, john, 2, john, 0
+
+createUser
+	requestUser
+	isValidUser
+	insertUserInDB
+deleteUser
+	requestUser
+	isValidUser
+	existsInDB
+	deleteUserInDB
+	
