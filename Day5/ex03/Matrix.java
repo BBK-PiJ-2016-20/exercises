@@ -207,4 +207,12 @@ public class Matrix {
 
         values = newValues;
     }
+
+    public boolean isSymmetrical() {
+        return MatrixChecker.isSymmetrical(values);
+    }
+
+    public boolean isTriangular() {
+        return MatrixChecker.isTriangular(values);
+    }
 }

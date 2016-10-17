@@ -19,5 +19,39 @@ public class Main {
 
         m.setMatrix("1,2,3,4;5,6,7,8;9,10,11,12;13,14,15,16");
         m.prettyPrint();
+
+        int[] ints = {1, 2, 3, 2, 1};
+        System.out.println("Is symmetrical: " + MatrixChecker.isSymmetrical(ints)); // Should print Is symmetrical: true
+        int[] ints2 = {1, 2, 3, 3, 1};
+        System.out.println("Is symmetrical: " + MatrixChecker.isSymmetrical(ints2)); // Should print Is symmetrical: false
+
+        int[][] intMatrix = { {1, 2}, {2, 1}};
+        System.out.println("Is symmetrical: " + MatrixChecker.isSymmetrical(intMatrix)); // Should print Is symmetrical: true
+        int[][] intMatrix2 = { {1, 2}, {1, 2}};
+        System.out.println("Is symmetrical: " + MatrixChecker.isSymmetrical(intMatrix2)); // Should print Is symmetrical: false
+        
+        int[][] triangular = { {1, 2, 3}, {0, 1, 2}, {0, 0, 1}};
+        System.out.println("Is triangular: " + MatrixChecker.isTriangular(triangular)); // Should print Is triangular: true
+        int[][] notTriangular = { {1, 2, 3}, {1, 2, 3}, {1, 2, 3}};
+        System.out.println("Is triangular: " + MatrixChecker.isTriangular(notTriangular)); // Should print Is triangular: false
+
+        Matrix symmetricalMatrix = new Matrix(2, 2);
+        symmetricalMatrix.setMatrix("1,2;2,1");
+        System.out.println("Is symmetrical: " + symmetricalMatrix.isSymmetrical()); // Should print Is symmetrical: true
+        Matrix notSymmetricalMatrix = new Matrix(2, 2);
+        notSymmetricalMatrix.setMatrix("1,2;1,2");
+        System.out.println("Is symmetrical: " + notSymmetricalMatrix.isSymmetrical()); // Should print Is symmetrical: false
+
+        Matrix triangularMatrix = new Matrix(3, 3);
+        triangularMatrix.setMatrix("1,2,3;0,1,2;0,0,1");
+        System.out.println("Is triangular: " + triangularMatrix.isTriangular()); // Should print Is triangular: true
+        Matrix notTriangularMatrix = new Matrix(3, 3);
+        notTriangularMatrix.setMatrix("1,2,3;1,2,3;1,2,3");
+        System.out.println("Is triangular: " + notTriangularMatrix.isTriangular()); // Should print Is triangular: false
+        
+        
+        
+        
+        
     }
 }
