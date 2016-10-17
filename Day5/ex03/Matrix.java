@@ -47,26 +47,22 @@ public class Matrix {
         return true;
     }
 
-    // Attempts to parse a string specifying count ints in the format "1,2,3". If it cannot parse exactly that many
-    // ints in that format, returns a zero-length array.
-    private static int[] parseInts(String str, int count) {
-        int[] ret = new int[count];
+    // Split a string on the given character, returning an array of strings (not including the separator). If there
+    // are not exactly count elements in the resulting array, return an empty array.
+    private static String[] split(String str, char separator, int count) {
+        String[] ret = new String[count];
         String currentString = "";
-        int currentInt = 0;
-        
-        str = str + ",";
+        int currentIndex = 0;
+
+        str = str + separator;
 
         int i = 0;
-        while (i < str.length() && currentInt < count) {
+        while (i < str.length() && currentIndex < count) {
             char c = str.charAt(i);
-            if (c == ',') {
-                if (!isAllDigits(currentString)) {
-                    System.err.println("Warning: non-digit character in string in parseInts");
-                    return new int[0];
-                }
-                ret[currentInt] = Integer.parseInt(currentString);
+            if (c == separator) {
+                ret[currentIndex] = currentString;
                 currentString = "";
-                currentInt++;
+                currentIndex++;
             } else {
                 currentString += c;
             }
@@ -75,12 +71,36 @@ public class Matrix {
 
         // If we have read the whole string and have got exactly the right number of elements, we can return
         // the list. Otherwise, return an empty array to signify an error.
-        if (i == str.length() && currentInt == count) {
+        if (i == str.length() && currentIndex == count) {
             return ret;
         } else {
+            System.err.println("Warning: wrong number of element in split");
+            return new String[0];
+        }
+    }
+
+    // Attempts to parse a string specifying count ints in the format "1,2,3". If it cannot parse exactly that many
+    // ints in that format, returns a zero-length array.
+    private static int[] parseInts(String str, int count) {
+        int[] ret = new int[count];
+        
+        String[] strings = split(str, ',', count);
+
+        if (strings.length != count) {
             System.err.println("Warning: wrong number of ints in parseInts");
             return new int[0];
         }
+
+        for (int i = 0; i < strings.length; i++) {
+                if (!isAllDigits(strings[i])) {
+                    System.err.println("Warning: non-digit character in string in parseInts");
+                    return new int[0];
+                }
+                ret[i] = Integer.parseInt(strings[i]);
+        }
+
+        return ret;
+
     }
 
     /* a method setRow(int,String) that modifies one whole row of the array, given its position as an integer and
@@ -161,4 +181,30 @@ public class Matrix {
         }
     }
 
+
+    /* Extend your Matrix class with a method setMatrix(String) that takes a String representing the numbers to be
+       put in the elements of the array separated by commas, separating rows by semicolons, e.g. 1,2,3;4,5,6;7,8,9. */
+    public void setMatrix(String matrix) {
+        // Parse the string into a new array, so that we can be sure that the whole string is valid before
+        // making any changes to the array. Otherwise, we might end up with a partially-updated array.
+        int[][] newValues = new int[getRows()][getCols()];
+
+        String[] rows = split(matrix, ';', getRows());
+        if (rows.length != getRows()) {
+            System.err.println("Warning: wrong number of rows in setMatrix");
+            return;
+        }
+
+        for (int i = 0; i < rows.length; i++) {
+            int[] row = parseInts(rows[i], getCols());
+            if (row.length != getCols()) {
+                System.err.println("Warning: wrong number of cols in setMatrix");
+                return;
+            }
+
+            newValues[i] = row;
+        }
+
+        values = newValues;
+    }
 }
