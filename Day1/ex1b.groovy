@@ -1,0 +1,1 @@
+print "Hickory, Dickory, Dock"
