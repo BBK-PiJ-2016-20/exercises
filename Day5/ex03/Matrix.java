@@ -208,6 +208,12 @@ public class Matrix {
         values = newValues;
     }
 
+    /*
+    Add some methods to your Matrix class from the other exercise to perform tests on the matrices you create
+    using the methods from MatrixChecker. (Hint: these methods will need to create objects of type MatrixChecker).
+    NB, I've made the methods on MatrixChecker static, so contra the hint I don't actually need to create an object.
+    */
+
     public boolean isSymmetrical() {
         return MatrixChecker.isSymmetrical(values);
     }
