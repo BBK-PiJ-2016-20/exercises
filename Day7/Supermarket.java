@@ -8,7 +8,7 @@ class Supermarket {
     private PersonQueue q;
 
     public Supermarket() {
-        q = new ListPersonQueue();
+        q = new OldestQueue();
     }
 
     void addPerson(Person p) {
@@ -21,7 +21,7 @@ class Supermarket {
     public boolean servePerson() {
         Person p = q.retrieve();
         if (p != null) {
-            System.out.println("Now serving: " + p.getName());
+            System.out.println("Now serving: " + p.getName() + "(" + p.getAge() + ")");
             return true;
         } else {
             System.out.println("No-one to serve");
@@ -33,11 +33,11 @@ class Supermarket {
         Supermarket s = new Supermarket();
 
         s.addPerson(new Person("Alice", 25));
-        s.addPerson(new Person("Bob", 25));
-        s.addPerson(new Person("Clare", 25));
-        s.addPerson(new Person("Daniel", 25));
-        s.addPerson(new Person("Eleanor", 25));
-        s.addPerson(new Person("Frank", 25));
+        s.addPerson(new Person("Bob", 26));
+        s.addPerson(new Person("Clare", 24));
+        s.addPerson(new Person("Daniel", 27));
+        s.addPerson(new Person("Eleanor", 23));
+        s.addPerson(new Person("Frank", 28));
 
         while (s.servePerson()) {
             // Do nothing            
