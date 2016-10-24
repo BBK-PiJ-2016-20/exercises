@@ -9,8 +9,4 @@ public interface PersonQueue {
     */
     Person retrieve();
 
-    /**
-     * Print details of the queue for debugging
-     */
-    void dump();
 }

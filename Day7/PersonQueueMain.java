@@ -8,15 +8,12 @@ class PersonQueueMain {
         q.insert(new Person("Daniel", 25));
         q.insert(new Person("Eleanor", 25));
         q.insert(new Person("Frank", 25));
-        q.dump();
 
         Person p = q.retrieve();
         while (p != null) {
             p.print();
-            q.dump();
             p = q.retrieve();
         }
 
-        q.dump();
     }
 }
