@@ -8,7 +8,7 @@ class Supermarket {
     private PersonQueue q;
 
     public Supermarket() {
-        q = new ArrayPersonQueue();
+        q = new ListPersonQueue();
     }
 
     void addPerson(Person p) {
