@@ -8,7 +8,7 @@ class Supermarket {
     private PersonQueue q;
 
     public Supermarket() {
-        q = new OldestQueue();
+        q = new ClusteredQueue();
     }
 
     void addPerson(Person p) {
@@ -34,10 +34,10 @@ class Supermarket {
 
         s.addPerson(new Person("Alice", 25));
         s.addPerson(new Person("Bob", 26));
-        s.addPerson(new Person("Clare", 24));
-        s.addPerson(new Person("Daniel", 27));
-        s.addPerson(new Person("Eleanor", 23));
-        s.addPerson(new Person("Frank", 28));
+        s.addPerson(new Person("Clare", 16));
+        s.addPerson(new Person("Daniel", 65));
+        s.addPerson(new Person("Eleanor", 66));
+        s.addPerson(new Person("Frank", 18));
 
         while (s.servePerson()) {
             // Do nothing            
