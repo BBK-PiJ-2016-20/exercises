@@ -30,6 +30,11 @@ class SmartPhone extends MobilePhone {
         } else {
             super.call(number);
         }
-
+    }
+    
+    // Because playGame in MobilePhone is private, I need to provide a new implementation of it here so
+    // that there is a visible version of playGame to call from PhoneLauncher.
+    public void playGame(String game) {
+        System.out.println("A fancy smartphone version of: " + game);
     }
 }

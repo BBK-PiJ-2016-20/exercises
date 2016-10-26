@@ -2,7 +2,7 @@ public class MobilePhone extends OldPhone {
 
     public MobilePhone(String brand) {
         super(brand);
-        
+
         savedNumbers = new String[MAX_SAVED_NUMBERS];
         for (int i = 0; i < MAX_SAVED_NUMBERS; i++) {
             savedNumbers[i] = null;
@@ -23,7 +23,7 @@ public class MobilePhone extends OldPhone {
      *
      * @param game the name of the game to "play"
      */
-    public void playGame(String game) {
+    private void playGame(String game) {
         System.out.println("Playing: " + game);
     }
 
