@@ -1,6 +1,8 @@
 public class MobilePhone extends OldPhone {
 
-    public MobilePhone() {
+    public MobilePhone(String brand) {
+        super(brand);
+        
         savedNumbers = new String[MAX_SAVED_NUMBERS];
         for (int i = 0; i < MAX_SAVED_NUMBERS; i++) {
             savedNumbers[i] = null;

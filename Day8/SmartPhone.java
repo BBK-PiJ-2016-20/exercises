@@ -1,4 +1,9 @@
 class SmartPhone extends MobilePhone {
+
+    public SmartPhone(String brand) {
+        super(brand);
+    }
+
     /**
      * Visits a URL (by printing it out).
      *
