@@ -33,7 +33,7 @@ public class MobilePhone extends OldPhone {
      *
      * @param number the new number to add.
      */
-    private void storeNumber(String number) {
+    protected void storeNumber(String number) {
         // Move the saved numbers one space down in the array to free up space in the first element
         // of the array to store the new number. This moves numbers every time a new number is added,
         // which is obviously inefficient, but easy to write.

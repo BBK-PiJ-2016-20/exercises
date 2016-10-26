@@ -10,6 +10,7 @@ public class PhoneLauncher {
         // Phone methods
         phone.call("01677 423336");
         phone.call("07969 412849");
+        phone.call("001510 590 7277");
         
         // MobilePhone methods
         phone.printLastNumbers();

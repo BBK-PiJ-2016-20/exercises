@@ -16,4 +16,15 @@ class SmartPhone extends MobilePhone {
     public Position findPosition() {
         return new Position(10.0, 11.3);
     }
+
+    @Override
+    public void call(String number) {
+        if (number.startsWith("00")) {
+            storeNumber(number);
+            System.out.println("Calling " + number + " through the internet to save money");
+        } else {
+            super.call(number);
+        }
+
+    }
 }
