@@ -1,6 +1,6 @@
 class DoublyLinkedList<T> {
-	private DoublyLinkedNode<T> first = null;
-	private DoublyLinkedNode<T> current = null;
+	protected DoublyLinkedNode<T> first = null;
+	protected DoublyLinkedNode<T> current = null;
 
 	public void add(T t) {
 		DoublyLinkedNode<T> newNode = new DoublyLinkedNode<T>();
