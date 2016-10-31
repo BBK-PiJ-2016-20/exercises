@@ -1,4 +1,6 @@
-class DoublyLinkedList<T> {
+import java.util.Iterator;
+
+class DoublyLinkedList<T> implements Iterator<T> {
 	protected DoublyLinkedNode<T> first = null;
 	protected DoublyLinkedNode<T> current = null;
 
@@ -57,6 +59,10 @@ class DoublyLinkedList<T> {
 		}
 		current = current.next;
 		return current.data;
+	}
+
+	public boolean hasNext() {
+		return first != null && (current == null || current.next != null);
 	}
 
 	/**
