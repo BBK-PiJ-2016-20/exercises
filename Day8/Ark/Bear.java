@@ -1,10 +1,10 @@
 public class Bear extends Mammal {
     public Bear() {
-        super("Bear", new Response());
+        super("Bear", new DefaultResponse());
     }
 
     @Override 
     public void makeSound() {
-        System.out.println("\"Growl\" growls the " + getName());
+        printSoundString("growl");
     }
 }

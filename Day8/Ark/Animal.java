@@ -24,6 +24,17 @@ public abstract class Animal {
     }
 
     /**
+     * A utility function to print a "sound" string in the format I have
+     * arbitrarily choosen to use, which has the form '"Miaow" miaows the cat'
+     *
+     * @param   sound   the sound the animal makes, as a lower-case string.
+     */
+    protected void printSoundString(String sound) {
+        String capitalized = Character.toTitleCase(sound.charAt(0)) + sound.substring(1);
+        System.out.println("\""+ capitalized + "\" " + sound + "s the " + getName());
+    }
+
+    /**
      * Make the animal's characteristic sound.
      */
     public abstract void makeSound();
