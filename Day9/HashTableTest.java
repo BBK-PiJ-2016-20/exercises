@@ -1,10 +1,11 @@
+import java.util.Iterator;
+
 public class HashTableTest {
 
-    public static void printList(DoublyLinkedList<String> list) {
-        String s = list.next();
-        while (s != null) {
+    public static void printList(Iterator<String> list) {
+        while (list.hasNext()) {
+            String s = list.next();
             System.out.println(s);
-            s = list.next();
         } 
     }
 
