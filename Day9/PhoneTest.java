@@ -12,7 +12,7 @@ public class PhoneTest {
     }
 
     public static void main(String[] args) {
-        SmartPhone myPhone = new SmartPhone("Samsung");
+        MobilePhone myPhone = new MobilePhone("Samsung");
 
         testPhone(myPhone);
     }
