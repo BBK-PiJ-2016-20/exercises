@@ -1,4 +1,10 @@
 public class GenericStack<T extends Number> {
+
+    private static class GenericStackNode<T> {
+        T data;
+        GenericStackNode<T> next;
+    }
+
     private GenericStackNode<T> head = null;
 
     public void push(T value) {
