@@ -23,7 +23,7 @@ public class MobilePhone extends OldPhone {
      *
      * @param game the name of the game to "play"
      */
-    private void playGame(String game) {
+    public void playGame(String game) {
         System.out.println("Playing: " + game);
     }
 
