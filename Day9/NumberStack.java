@@ -1,17 +1,17 @@
-public class GenericStack<T extends Number> {
+public class NumberStack<T extends Number> {
 
-    private static class GenericStackNode<T> {
+    private static class NumberStackNode<T> {
         T data;
-        GenericStackNode<T> next;
+        NumberStackNode<T> next;
     }
 
-    private GenericStackNode<T> head = null;
+    private NumberStackNode<T> head = null;
 
     /**
      * Add a value to the stack.
      */
     public void push(T value) {
-        GenericStackNode<T> node = new GenericStackNode<T>();
+        NumberStackNode<T> node = new NumberStackNode<T>();
         node.data = value;
         node.next = head;
         head = node;
