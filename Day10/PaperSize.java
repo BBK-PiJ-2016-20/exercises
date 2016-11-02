@@ -103,7 +103,7 @@ public class PaperSize {
         if (d == null) {
             System.out.println(s + " is not a valid paper size");
         } else {
-            System.out.println(d.shortSide + " x " + d.longSide);
+            System.out.println(d.shortSide + "mm x " + d.longSide + "mm");
         }
     } 
 }
