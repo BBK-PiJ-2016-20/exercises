@@ -13,6 +13,9 @@ public class TreeIntSet implements IntSet {
     }
 
     public boolean contains(int i) {
+        if (root == null) {
+            return false;
+        }
         return root.contains(i);
     }
 
