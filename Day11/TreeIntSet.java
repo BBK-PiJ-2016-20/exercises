@@ -20,6 +20,9 @@ public class TreeIntSet implements IntSet {
     }
 
     public boolean containsVerbose(int i) {
+        if (root == null) {
+            return false;
+        }
         return containsVerbose(root, i);
     }
 
@@ -45,6 +48,9 @@ public class TreeIntSet implements IntSet {
     }
 
     public String toString() {
+        if (root == null) {
+            return "";
+        }
         return toString(root);
     }
 
