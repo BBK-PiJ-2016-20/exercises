@@ -1,7 +1,9 @@
 public class IntSetTest {
     public static void main(String[] args) {
-        IntSet s = new TreeIntSet();
+        IntSet s = new ListIntSet();
         
+        s.toString();
+
         s.add(1);
         s.add(3);
         s.add(5);
