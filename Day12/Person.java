@@ -1,14 +1,21 @@
-public class Person {
-    public static String getInitials(String fullName) {
-        String result = "";
-        String[] words = fullName.split(" ");
-        for (int i = 0; i < words.length; i++) {
-            if (words[i].length() == 0) {
-                continue;
-            }
-            String nextInitial = "" + words[i].charAt(0);
-            result = result + nextInitial.toUpperCase();
-        }
-        return result;
+class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void print() {
+        System.out.println("Name: " + name + " Age: " + age);
     }
 }
