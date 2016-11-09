@@ -46,7 +46,7 @@ public class ArrayStack<T> implements Stack<T> {
 
     public void push(T t) {
         if (size == storage.length) {
-            resize(storage.length * 4);
+            resize(storage.length * 2);
         }
         storage[size] = t;
         size++;
