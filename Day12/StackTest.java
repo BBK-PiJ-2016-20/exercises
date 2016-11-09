@@ -245,4 +245,38 @@ public abstract class StackTest {
         s.pop();
         assertNotSame(o, s.peek());
     }
+
+    /**
+     * Pop all elements until empty, starting with an empty stack.
+     */
+    @Test
+    public void testPopAllEmpty() {
+        Stack<Object>s = createStack();
+        while (!s.isEmpty()) {
+            s.pop();
+        }
+    }
+
+    /**
+     * Pop all elements until empty, starting with one element.
+     */
+    @Test
+    public void testPopAllOne() {
+        Stack<Object>s = createStackOne();
+        while (!s.isEmpty()) {
+            s.pop();
+        }
+    }
+
+    /**
+     * Pop all elements until empty, starting with many elements.
+     */
+    @Test
+    public void testPopAllMany() {
+        Stack<Object>s = createStackMany();
+        while (!s.isEmpty()) {
+            s.pop();
+        }
+    }
+
 }
