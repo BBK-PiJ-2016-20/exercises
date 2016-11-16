@@ -1,29 +1,23 @@
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Hailstone {
     /**
      * Return a sequence of hailstone numbers starting at n.
      */
     public static Iterable<Integer> hailstone(int n) {
-        return hailstoneImpl(n);
+        return hailstoneImpl(n, new ArrayList<Integer>());
     }
 
-    private static Deque<Integer> hailstoneImpl(int n) {
-        Deque<Integer> result;
-
+    private static ArrayList<Integer> hailstoneImpl(int n, ArrayList<Integer> accum) {
+        accum.add(n);
         if (n == 1) {
-            result = new LinkedList<Integer>();
-            result.push(1);
-            return result;
+            return accum;
         }
         if (n % 2 == 0) {
-            result = hailstoneImpl(n / 2);
+            return hailstoneImpl(n / 2, accum);
         } else {
-            result = hailstoneImpl(3 * n + 1);
+            return hailstoneImpl(3 * n + 1, accum);
         }
-        result.push(n);
-        return result;
     }
 
     public static void main(String[] args) {
