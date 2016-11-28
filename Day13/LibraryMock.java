@@ -24,4 +24,14 @@ public class LibraryMock implements Library {
     public int getId(String username) {
         return fakeId;
     }
+
+    @Override
+    public int getMaxBooksPerUser() {
+        return 3;
+    }
+
+    @Override
+    public void setMaxBooksPerUser(int i) {
+
+    }
 }
