@@ -1,4 +1,4 @@
-import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
@@ -28,17 +28,11 @@ public class TextLoop implements Runnable {
                 r.run();
             }
         } else {
-            ExecutorService executor = Executors.newFixedThreadPool(4);
+            Executor executor = new ExecutorImpl();
             for (int i = 0; i < 10; i++) {
                 Runnable r = new TextLoop("Thread " + i);
                 executor.execute(r);
             }
-            try {
-                executor.awaitTermination(100, TimeUnit.MILLISECONDS);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
-            System.exit(0);
         }
     }
 }
