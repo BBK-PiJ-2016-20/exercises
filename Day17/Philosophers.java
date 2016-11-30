@@ -51,6 +51,15 @@ public class Philosophers {
             grabbed = true;
         }
 
+        private synchronized boolean tryGrab(int who) {
+            if (grabbed) {
+                return false;
+            } else {
+                grab(who);
+                return true;
+            }
+        }
+
         private synchronized void drop(int who) {
             if (this.who != who) {
                 System.out.println("Fork " + number + ": erroneous attempt by " + who + "to drop a fork grabbed by philosopher " + this.who);
@@ -83,29 +92,41 @@ public class Philosophers {
         public void run() {
             System.out.println("Philosopher " + number + ": starting.");
 
-            left.grab(number);
-            System.out.println("Philosopher " + number + ": grabbed left fork.");
-            
-            // Pause briefly after grabbing the left fork to make sure other
-            // threads have an opportunity to grab a fork. Deadlock will occur
-            // if all philosophers grab the left fork before any of them have
-            // grabbed a right fork, so this pause makes that more likely to
-            // occur, to illustrate the problem.
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-                return;
+            boolean eaten = false;
+
+            while (!eaten) {
+                left.grab(number);
+                System.out.println("Philosopher " + number + ": grabbed left fork.");
+                
+                // Pause briefly after grabbing the left fork to make sure
+                // other threads have an opportunity to grab a fork. Using the
+                // naive scheduling algorithgm, deadlock will occur if all
+                // philosophers grab the left fork before any of them have
+                // grabbed a right fork, so this pause makes that more likely
+                // to occur, to illustrate the problem.
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                    return;
+                }
+                
+                if (right.tryGrab(number) == false ) {
+                    System.out.println("Philosopher " + number + ": could not grab right fork, dropping left.");
+                    left.drop(number);
+                    continue;
+                }
+
+                System.out.println("Philosopher " + number + ": grabbed right fork.");
+
+                eaten = true;
+
+                right.drop(number);
+                System.out.println("Philosopher " + number + ": dropped right fork.");
+
+                left.drop(number);
+                System.out.println("Philosopher " + number + ": dropped left fork.");
             }
-            
-            right.grab(number);
-            System.out.println("Philosopher " + number + ": grabbed right fork.");
-
-            right.drop(number);
-            System.out.println("Philosopher " + number + ": dropped right fork.");
-
-            left.drop(number);
-            System.out.println("Philosopher " + number + ": dropped left fork.");
         }
     }
 
