@@ -39,4 +39,25 @@ public class LibraryImplTest {
         Library library = new LibraryImpl("");
         library.getMaxBooksPerUser();        
     }
+
+    /**
+     * Repeated calls to getId(String) with the same name should return the
+     * same ID.
+     */
+    @Test
+    public void testGetIdSameName() {
+        Library library = new LibraryImpl("");
+        String name = "CLR James";
+        assertEquals(library.getId(name), library.getId(name));
+    }
+
+    /**
+     * Calls to getId(String) with different names should return different
+     * IDs.
+     */
+    @Test
+    public void testGetIdDifferenceName() {
+        Library library = new LibraryImpl("");
+        assertNotEquals(library.getId("CLR James"), library.getId("Raya Dunayevskaya"));
+    }
 }
