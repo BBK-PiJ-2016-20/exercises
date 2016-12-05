@@ -40,19 +40,23 @@ import java.util.Arrays;
 
          System.out.println("Sorted by first character: " + Arrays.asList(strings));
 
-         Arrays.sort(strings, (first, second) -> { 
-             if (first.contains("e")) {
-                 return -1;
-             } else if (second.contains("e")) {
-                 return 1;
-             } else {
-                 return 0;
-             }
-         });
+         Arrays.sort(strings, StringSorter::compareEs);
 
          System.out.println("Sorted by e's first: " + Arrays.asList(strings));
-
-
      }
+
+     /**
+      * A comparison function in which all strings containing the letter "e"
+      * compare less than strings not containing e.
+      */ 
+     public static int compareEs(String first, String second)  { 
+        if (first.contains("e")) {
+            return -1;
+        } else if (second.contains("e")) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
  } 
