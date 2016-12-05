@@ -15,4 +15,8 @@ public class Apple {
     public Colour getColour() {
         return colour;
     }
+
+    public String toString() {
+        return colour + " apple, weight " + weight + "g";
+    }
 }
