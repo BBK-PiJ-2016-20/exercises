@@ -18,6 +18,10 @@ import java.util.List;
  public class MapReduce {
      public static void main(String[] args) {
         List<String> words = Arrays.asList("hi", "hello", "bonjour", "tag", "hola", "yes", "no", "si", "oui", "non", "ja", "nein");
+        // 8a 
+        // String changed = words.stream().reduce("", (x, y) -> x + y.toUpperCase());
+        // 8b 
+        // String changed = words.stream().map(String::toUpperCase).reduce("", (x, y) -> x + y);
         String changed = words.stream().reduce((x, y) -> x + "," + y).orElse("");
 
         System.out.println(changed);
