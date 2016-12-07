@@ -33,7 +33,17 @@ import java.util.stream.Stream;
      }
 
      public static Stream<String> makePipeline(List<String> source) {
-         return source.stream().map(String::toUpperCase).filter(word -> word.length() < 4);
+         return source.stream().map(Pipeline::loggingToUpper).filter(word -> word.length() < 4);
      }
 
+     /**
+      * The above example uses lazy evaluation, but it is not easy to see that
+      * it is doing so. Make a variation of the above example that proves that
+      * it is doing lazy evaluation. The simplest way is to track which entries
+      * are turned into upper case.
+      */
+     public static String loggingToUpper(String s) {
+         System.out.println("Converting to uppercase: " + s);
+         return s.toUpperCase();
+     }
  }
