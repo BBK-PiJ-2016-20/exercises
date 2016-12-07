@@ -24,7 +24,10 @@ import java.util.stream.Stream;
      }
 
      public static Stream<Pair> pairsStream(List<Integer> list1, List<Integer> list2) {
-         return list1.stream().flatMap((x) -> list2.stream().map((y) -> new Pair(x, y)));
+         return list1.stream()
+                        .flatMap(
+                            x -> list2.stream().map(y -> new Pair(x, y))
+                        );
      }
 
      public static List<Pair> allPairs(List<Integer> list1, List<Integer> list2) {
@@ -36,7 +39,9 @@ import java.util.stream.Stream;
       * is divisible by 3? For example, (2, 4) and (3, 3) are valid.
       */
     public static List<Pair> somePairs(List<Integer> list1, List<Integer> list2, Predicate<Pair> pred) {
-        return pairsStream(list1, list2).filter(pred).collect(Collectors.toList());
+        return pairsStream(list1, list2)
+                .filter(pred)
+                .collect(Collectors.toList());
     }
  }
 

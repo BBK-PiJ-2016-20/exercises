@@ -15,7 +15,10 @@ import java.util.stream.Collectors;
              new Dish("Pulpo Gallego", false, 250, Dish.Type.FISH)
          };
 
-         List<Dish> meatDishes = Arrays.stream(dishes).filter((dish) -> dish.getType() == Dish.Type.MEAT).limit(2).collect(Collectors.toList());
+         List<Dish> meatDishes = Arrays.stream(dishes)
+                                        .filter(dish -> dish.getType() == Dish.Type.MEAT)
+                                        .limit(2)
+                                        .collect(Collectors.toList());
 
          System.out.println("First two meat dishes: " + meatDishes);
      }

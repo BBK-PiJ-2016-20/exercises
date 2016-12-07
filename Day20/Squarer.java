@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
      }
 
      public static List<Integer> squareAll(List<Integer> ints) {
-         return ints.stream().map((x) -> x * x).collect(Collectors.toList());
+         return ints.stream()
+                    .map(x -> x * x)
+                    .collect(Collectors.toList());
      }
  }

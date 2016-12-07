@@ -19,7 +19,9 @@ public class Numbers {
      */
     public static List<Double> randomNumberList(int count) {
          Random r = new Random();
-         return Stream.generate(r::nextDouble).limit(count).collect(toList());
+         return Stream.generate(r::nextDouble)
+                        .limit(count)
+                        .collect(toList());
      }
 
      /**
@@ -29,6 +31,8 @@ public class Numbers {
       *
       */
      public static List<Integer> orderedNumbersList(int start, int step, int count) {
-         return Stream.iterate(start, x -> x + step).limit(count).collect(toList());
+         return Stream.iterate(start, x -> x + step)
+                        .limit(count)
+                        .collect(toList());
      }
  }

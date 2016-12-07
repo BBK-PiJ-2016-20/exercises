@@ -33,7 +33,9 @@ import java.util.stream.Stream;
      }
 
      public static Stream<String> makePipeline(List<String> source) {
-         return source.stream().map(Pipeline::loggingToUpper).filter(word -> word.length() < 4);
+         return source.stream()
+                        .map(Pipeline::loggingToUpper)
+                        .filter(word -> word.length() < 4);
      }
 
      /**

@@ -16,7 +16,9 @@ import java.util.stream.Collectors;
              new Dish("Pulpo Gallego", false, 250, Dish.Type.FISH)
          };
 
-         int numberOfDishes = Arrays.stream(dishes).map((dish) -> 1).reduce(0, (x, y) -> x + y);
+         int numberOfDishes = Arrays.stream(dishes)
+                                    .map(dish -> 1)
+                                    .reduce(0, (x, y) -> x + y);
 
          System.out.println("Number of dishes: " + numberOfDishes);
      }

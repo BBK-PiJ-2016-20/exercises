@@ -22,7 +22,9 @@ import java.util.List;
         // String changed = words.stream().reduce("", (x, y) -> x + y.toUpperCase());
         // 8b 
         // String changed = words.stream().map(String::toUpperCase).reduce("", (x, y) -> x + y);
-        String changed = words.stream().reduce((x, y) -> x + "," + y).orElse("");
+        String changed = words.stream()
+                                .reduce((x, y) -> x + "," + y)
+                                .orElse("");
 
         System.out.println(changed);
      }
