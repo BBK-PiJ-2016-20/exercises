@@ -2,17 +2,22 @@ import java.util.List;
 
 /**
  * Provide three ways to use streams to compute the sum of a list of numbers.
+ *
+ * Rewrite one of the solutions for (10a) so that it can be executed in
+ * parallel; verify that you get the same answer as for the sequential code.
  */
 public class Sums {
     public static void main(String[] args) {
-        List<Integer> integers = Numbers.orderedNumbersList(5, 2, 10);
-        int sum1 = integers.stream().mapToInt(i -> i).sum();
+        List<Integer> integers = Numbers.orderedNumbersList(5, 2, 100);
+        int sum1 = integers.parallelStream().mapToInt(i -> i).sum();
         System.out.println("First sum: " + sum1);
 
-        int sum2 = integers.stream().reduce(0, (x, y) -> x + y);
+        int sum2 = integers.parallelStream().reduce(0, (x, y) -> x + y);
         System.out.println("Second sum: " + sum2);
-
-        Summer summer = integers.stream().collect(() -> new Summer(0), Summer::addInt, Summer::addSummer);
+        
+        // Summer contains no synchronization code, so I don't think it's safe
+        // to call it from a parallel stream.
+        Summer summer = integers.parallelStream().collect(() -> new Summer(0), Summer::addInt, Summer::addSummer);
         int sum3 = summer.getTotal();
         System.out.println("Second sum: " + sum3);
     }
