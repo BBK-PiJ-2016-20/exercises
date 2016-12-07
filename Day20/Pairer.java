@@ -1,6 +1,8 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Given two lists of numbers, how would you return all pairs of numbers? For
@@ -14,12 +16,28 @@ import java.util.stream.Collectors;
          List<Integer> list2 = Arrays.asList(3, 4);
 
          List<Pair> pairs = allPairs(list1, list2);
-         System.out.println(pairs);
+         System.out.println("All pairs: " + pairs);
+
+         List<Pair> sumMultipleOf3 = somePairs(list1, list2, (pair) -> (pair.getX() + pair.getY()) % 3 == 0);
+
+         System.out.println("Pairs with sums divisible by 3: " + sumMultipleOf3);
+     }
+
+     public static Stream<Pair> pairsStream(List<Integer> list1, List<Integer> list2) {
+         return list1.stream().flatMap((x) -> list2.stream().map((y) -> new Pair(x, y)));
      }
 
      public static List<Pair> allPairs(List<Integer> list1, List<Integer> list2) {
-         return list1.stream().flatMap((x) -> list2.stream().map((y) -> new Pair(x, y))).collect(Collectors.toList());
+         return pairsStream(list1, list2).collect(Collectors.toList());
      }
+
+     /**
+      * How would you extend the previous example to return only pairs whose sum
+      * is divisible by 3? For example, (2, 4) and (3, 3) are valid.
+      */
+    public static List<Pair> somePairs(List<Integer> list1, List<Integer> list2, Predicate<Pair> pred) {
+        return pairsStream(list1, list2).filter(pred).collect(Collectors.toList());
+    }
  }
 
  class Pair {
